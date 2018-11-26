@@ -9,9 +9,15 @@ echo "Welcome $(whoami)"
 echo "This is a bash script that checks required programs/dependencies"
 
 # What type of operating system it is running on
-echo "Operating system: $(uname -a)"
+if [ "$(uname)" == "Darwin" ]; then
+    echo "Operating system: $(uname -a)"
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    echo "Operating system: $(uname -a)"
+elif []; then
+    echo "Operating system is not supported!" 
+fi 
 
-# Checking version of operating system
+# Checking version of operating system, 
 echo "Operating system version: $(uname -v)"
 
 # Checking version of git
