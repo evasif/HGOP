@@ -1,18 +1,15 @@
+foo() {
 # Time when the script starts
 echo "Start: $(date)"
-echo ""
 
 # A welcome message that includes the current user’s username
 echo "Welcome $(whoami)"
-echo ""
 
 # Information on what it does
 echo "This is a bash script that checks required programs/dependencies"
-echo ""
 
 # What type of operating system it is running on
 echo "Operating system: $(uname -a)"
-echo ""
 
 # Checking version of operating system
 echo "Operating system version: $(uname -v)"
@@ -38,7 +35,10 @@ else
 echo "Npm not found"
 fi
 
-# Generate a log file and output to terminal
-
 # Time when the script ends 
 echo "End: $(date)"
+echo ""
+}
+
+# Generate a log file and output to terminal
+foo | tee -a "logfile.txt" 
