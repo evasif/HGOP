@@ -10,14 +10,18 @@ echo ""
 echo "This is a bash script that checks required programs/dependencies...."
 echo ""
 
-# What type of Linux system it is running on
+# What type of operating system it is running on
 uname -a
 echo ""
 
-# Time when the script starts and ends 
-
-
-# Checking versions of all tools
+# Checking version of operating system
+uname -v
+# Checking version of git
+git --version
+# Checking version of node
+node --version
+# Checking version of npm
+npm --version
 
 # Generate a log file and output to terminal
 
