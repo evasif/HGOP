@@ -7,21 +7,36 @@ echo "Welcome $(whoami)"
 echo ""
 
 # Information on what it does
-echo "This is a bash script that checks required programs/dependencies...."
+echo "This is a bash script that checks required programs/dependencies"
 echo ""
 
 # What type of operating system it is running on
-uname -a
+echo "Operating system: $(uname -a)"
 echo ""
 
 # Checking version of operating system
-uname -v
+echo "Operating system version: $(uname -v)"
+
 # Checking version of git
-git --version
+if git --version >/dev/null 2>&1; then 
+echo "Git version: $(git --version)"
+else 
+echo "Git not found"
+fi
+
 # Checking version of node
-node --version
+if node --version >/dev/null 2>&1; then 
+echo "Node version: $(node --version)"
+else 
+echo "Node not found"
+fi
+
 # Checking version of npm
-npm --version
+if npm --version >/dev/null 2>&1; then 
+echo "Npm version: $(node --version)"
+else 
+echo "Npm not found"
+fi
 
 # Generate a log file and output to terminal
 
