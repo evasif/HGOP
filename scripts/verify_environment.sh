@@ -20,21 +20,21 @@ fi
 # Checking version of operating system, 
 echo "Operating system version: $(uname -v)"
 
-# Checking version of git
+# Checking presence/version of git
 if git --version >/dev/null 2>&1; then 
 echo "Git version: $(git --version)"
 else 
 echo "Git not found"
 fi
 
-# Checking version of node
+# Checking presence/version of node
 if node --version >/dev/null 2>&1; then 
 echo "Node version: $(node --version)"
 else 
 echo "Node not found"
 fi
 
-# Checking version of npm
+# Checking presence/version of npm
 if npm --version >/dev/null 2>&1; then 
 echo "Npm version: $(node --version)"
 else 
