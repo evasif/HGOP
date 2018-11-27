@@ -1,15 +1,17 @@
 # Docker Exercise
-TODO: What was this assignment about
+Getting to know Docker, how it works and linking containers together so they can connect. 
 
 ## What is Docker?
-TODO: short description
+Docker is a tool designed to make it easier to create, deploy, and run applications by using containers. 
 
 ## What is the difference between:
 * Virtual Machine
 * Docker Container
 * Docker Image
-TODO: short comparison
 
+Docker is a bit like a virtual machine. But unlike a virtual machine, rather than creating a whole virtual operating system, Docker Containers allow a developer to package up an application with all of the parts it needs, such as libraries and other dependencies, and ship it all out as one package. A Docker container is an active (or inactive if exited) stateful instantiation of an image. A Docker image is an ordered collection of root filesystem changes and the corresponding execution parameters for use within a container runtime.
+
+From: (https://opensource.com/resources/what-docker)
 ## Web API?
 APIs let developers integrate two parts of an application, or two different applications together. Web APIs are the same, excepts used for communications through the Internet. It consists of elements as functions, protocols and other tools that allow developers to build applciations. 
 (From: https://hackernoon.com/what-are-web-apis-c74053fa4072)
@@ -31,7 +33,13 @@ node-postgres is a collection of node.js modules to connecting with your Postgre
 (From: https://node-postgres.com/)
 
 ## What is docker-compose:
-TODO: short description
+Compose is a tool for defining and running multi-container Docker applications
+
+(From: https://docs.docker.com/compose/)
 
 ## Results
 TODO: What was accomplished in this exercise
+
+
+
+
