@@ -9,9 +9,9 @@ Docker is a tool designed to make it easier to create, deploy, and run applicati
 * Docker Container
 * Docker Image
 
-Docker is a bit like a virtual machine. But unlike a virtual machine, rather than creating a whole virtual operating system, Docker Containers allow a developer to package up an application with all of the parts it needs, such as libraries and other dependencies, and ship it all out as one package. A Docker container is an active (or inactive if exited) stateful instantiation of an image. A Docker image is an ordered collection of root filesystem changes and the corresponding execution parameters for use within a container runtime.
-
+Docker is a bit like a virtual machine. Unlike a virtual machine, rather than creating a whole virtual operating system, Docker Containers allow a developer to package up an application with all of the parts it needs, such as libraries and other dependencies, and ship it all out as one package. A Docker container is an active (or inactive if exited) stateful instantiation of an image. A Docker image is an ordered collection of root filesystem changes and the corresponding execution parameters for use within a container runtime.
 From: (https://opensource.com/resources/what-docker)
+
 ## Web API?
 APIs let developers integrate two parts of an application, or two different applications together. Web APIs are the same, excepts used for communications through the Internet. It consists of elements as functions, protocols and other tools that allow developers to build applciations. 
 (From: https://hackernoon.com/what-are-web-apis-c74053fa4072)
@@ -34,11 +34,10 @@ node-postgres is a collection of node.js modules to connecting with your Postgre
 
 ## What is docker-compose:
 Compose is a tool for defining and running multi-container Docker applications
-
 (From: https://docs.docker.com/compose/)
 
 ## Results
-TODO: What was accomplished in this exercise
+What we learned was what Docker is, how to use it and it's most common commands. We learned the difference between an Image and a Container and the process of using Docker Compose. We learned how to create an image, run the instance of it and how to store our image on Docker cloud. We now know how to use post and get request on the Docker compose and saw the results.  
 
 
 
