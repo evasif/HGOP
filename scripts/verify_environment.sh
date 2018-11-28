@@ -41,6 +41,13 @@ else
 echo "Npm not found"
 fi
 
+# Checking presence/version of aws
+if aws --version >/dev/null 2>&1; then 
+echo "aws version: $(aws --version)"
+else 
+echo "aws not found"
+fi
+
 # Time when the script ends 
 echo "End: $(date)"
 echo ""
