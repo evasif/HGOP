@@ -48,6 +48,14 @@ else
 echo "aws not found"
 fi
 
+# Checking presence/version of terraform 
+if terraform --version >/dev/null 2>&1; then 
+echo "terraform version: $(terraform --version)"
+else 
+echo "terraform not found"
+fi
+
+
 # Time when the script ends 
 echo "End: $(date)"
 echo ""
