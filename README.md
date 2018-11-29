@@ -1,4 +1,4 @@
-# Hagnýt gæðastjórnun og prófanir
+# Hagnýt gæðastjórnun og prófanir :cherry_blossom:
 
 ### Kennarar: Guðlaugur Stefán Egilsson and Hannes Pétursson
 
