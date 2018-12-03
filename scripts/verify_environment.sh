@@ -55,6 +55,12 @@ else
 echo "terraform not found"
 fi
 
+# Checking presence/version of docker 
+if docker --version >/dev/null 2>&1; then 
+echo "docker version: $(docker --version)"
+else 
+echo "docker not found"
+fi
 
 # Time when the script ends 
 echo "End: $(date)"
