@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "jest": {
+    "testRegex": "(/__tests__/.*|(\\.|/)(unit-test|spec))\\.jsx?$"
+  },
   "scripts": {
-    "test": "jest"
+    "test:unit": "jest"
   },
   "author": "",
   "license": "ISC",
