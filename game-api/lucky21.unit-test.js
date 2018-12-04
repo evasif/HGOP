@@ -37,7 +37,6 @@ test('guess21OrUnder should draw the next card', () => {
 
   // Inject our dependencies
   let game = lucky21Constructor(deck, dealer);
-  console.log(game);
 
   // Act
   game.guess21OrUnder(game);
@@ -47,4 +46,54 @@ test('guess21OrUnder should draw the next card', () => {
   expect(game.state.cards[2]).toEqual('01D');
 });
 
-test('')
+test('if player guesses under 21 but gets over 21 then he loses and game is over', () => {
+
+  // Arrange
+  let deck = deckConstructor();
+  deck = [
+    '05D', '09S', '10H',
+  ];
+
+  let dealer = dealerConstructor();
+
+  // Override the shuffle to do nothing.
+  dealer.shuffle = (deck) => { };
+
+  // Inject our dependencies
+  let game = lucky21Constructor(deck, dealer);
+
+  // Act
+  game.guess21OrUnder(game);
+
+  // Assert
+  expect(game.isGameOver(game)).toEqual(true);
+
+})
+
+test('if player guesses under 21 and has under 21', () => {
+
+  // Arrange
+  let deck = deckConstructor();
+  deck = [
+    '04D', '05S', '10H',
+  ];
+
+  let dealer = dealerConstructor();
+
+  // Override the shuffle to do nothing.
+  dealer.shuffle = (deck) => { };
+
+  // Inject our dependencies
+  let game = lucky21Constructor(deck, dealer);
+
+  // Act
+  game.guess21OrUnder(game);
+
+  // Assert
+  expect(game.isGameOver(game)).toEqual(false);
+
+})
+
+
+
+
