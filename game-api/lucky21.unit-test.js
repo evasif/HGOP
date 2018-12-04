@@ -290,7 +290,7 @@ test('getTotalValue should equal 25', () => {
   game.guess21OrUnder(game);
 
   // Assert
-  expect(game.getTotalValue(game)).toEqual(25);
+  expect(game.getTotal(game)).toEqual(25);
 
 })
 
@@ -314,13 +314,13 @@ test('getTotalValues should equal 18', () => {
   game.guess21OrUnder(game);
 
   // Assert
-  expect(game.getTotalValue(game)).toEqual(18);
+  expect(game.getTotal(game)).toEqual(18);
 
 })
 
 //15
 //getCards
-test('getCards should equal [02D, 06S, 10H]', () => {
+test('getCards should equal [10H, 06S, 02D]', () => {
   let deck = deckConstructor();
   deck = [
     '02D', '06S', '10H',
@@ -338,7 +338,7 @@ test('getCards should equal [02D, 06S, 10H]', () => {
   game.guess21OrUnder(game);
 
   // Assert
-  expect(game.getCards(game)).toEqual(['02D', '06S', '10H']);
+  expect(game.getCards(game)).toEqual(['10H', '06S', '02D']);
 
 })
 
