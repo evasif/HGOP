@@ -167,5 +167,100 @@ test('if player guesses under 21 and gets 21 then playerWon should be true', () 
 })
 
 
+//playerWon
+test('if player guesses under 21 and gets 21 then playerWon should be true', () => {
+  let deck = deckConstructor();
+  deck = [
+    '01D', '10S', '10H',
+  ];
+
+  let dealer = dealerConstructor();
+
+  // Override the shuffle to do nothing.
+  dealer.shuffle = (deck) => { };
+
+  // Inject our dependencies
+  let game = lucky21Constructor(deck, dealer);
+
+  // Act
+  game.guess21OrUnder(game);
+
+  // Assert
+  expect(game.playerWon(game)).toEqual(true);
+
+})
+
+//getCardsValue
+test('if player draws the cards in this deck it should equal 21', () => {
+  let deck = deckConstructor();
+  deck = [
+    '01D', '10S', '10H',
+  ];
+
+  let dealer = dealerConstructor();
+
+  // Override the shuffle to do nothing.
+  dealer.shuffle = (deck) => { };
+
+  // Inject our dependencies
+  let game = lucky21Constructor(deck, dealer);
+
+  // Act
+  game.guess21OrUnder(game);
+
+  // Assert
+  expect(game.getCardsValue(game)).toEqual(21);
+
+})
+
+
+//getCardsValue
+test('if player draws the cards in this deck it should equal 18 ', () => {
+  let deck = deckConstructor();
+  deck = [
+    '02D', '05S', '01H',
+  ];
+
+  let dealer = dealerConstructor();
+
+  // Override the shuffle to do nothing.
+  dealer.shuffle = (deck) => { };
+
+  // Inject our dependencies
+  let game = lucky21Constructor(deck, dealer);
+
+  // Act
+  game.guess21OrUnder(game);
+
+  // Assert
+  expect(game.getCardsValue(game)).toEqual(18);
+
+})
+
+//getCardsValue
+test('if player draws the cards in this deck it should equal 21 ', () => {
+  let deck = deckConstructor();
+  deck = [
+    '01D', '13S', '13H',
+  ];
+
+  let dealer = dealerConstructor();
+
+  // Override the shuffle to do nothing.
+  dealer.shuffle = (deck) => { };
+
+  // Inject our dependencies
+  let game = lucky21Constructor(deck, dealer);
+
+  // Act
+  game.guess21OrUnder(game);
+
+  // Assert
+  expect(game.getCardsValue(game)).toEqual(21);
+
+})
+
+
+
 
 
