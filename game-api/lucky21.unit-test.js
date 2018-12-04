@@ -2,6 +2,29 @@ const deckConstructor = require('./deck.js');
 const dealerConstructor = require('./dealer.js');
 const lucky21Constructor = require('./lucky21.js');
 
+test('a new game should have 50 cards left in the deck', () => {
+  let deck = deckConstructor();
+
+  let dealer = dealerConstructor();
+
+  // Inject our dependencies
+  let game = lucky21Constructor(deck, dealer);
+
+  expect(game.state.deck.length).toEqual(50);
+});
+
+test('a new game should have 2 drawn cards', () => {
+  let deck = deckConstructor();
+
+  let dealer = dealerConstructor();
+
+  // Inject our dependencies
+  let game = lucky21Constructor(deck, dealer);
+
+  expect(game.state.cards.length).toEqual(2);
+});
+
+
 test('guess21OrUnder should draw the next card', () => {
   // Arrange
   let deck = deckConstructor();
@@ -14,6 +37,7 @@ test('guess21OrUnder should draw the next card', () => {
 
   // Inject our dependencies
   let game = lucky21Constructor(deck, dealer);
+  console.log(game);
 
   // Act
   game.guess21OrUnder(game);
@@ -22,3 +46,5 @@ test('guess21OrUnder should draw the next card', () => {
   expect(game.state.cards.length).toEqual(3);
   expect(game.state.cards[2]).toEqual('01D');
 });
+
+test('')
