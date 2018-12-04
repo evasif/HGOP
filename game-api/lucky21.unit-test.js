@@ -94,6 +94,28 @@ test('if player guesses under 21 and has under 21', () => {
 
 })
 
+test('if player guesses over 21 and gets over 21 than he wins and game is over', () => {
+  let deck = deckConstructor();
+  deck = [
+    '05D', '09S', '10H',
+  ];
+
+  let dealer = dealerConstructor();
+
+  // Override the shuffle to do nothing.
+  dealer.shuffle = (deck) => { };
+
+  // Inject our dependencies
+  let game = lucky21Constructor(deck, dealer);
+
+  // Act
+  game.guessOver21(game);
+
+  // Assert
+  expect(game.playerWon(game)).toEqual(true);
+  expect(game.isGameOver(game)).toEqual(true);
+
+})
 
 
 
