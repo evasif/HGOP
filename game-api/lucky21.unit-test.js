@@ -24,30 +24,8 @@ test('a new game should have 2 drawn cards', () => {
   expect(game.state.cards.length).toEqual(2);
 });
 
-
-test('guess21OrUnder should draw the next card', () => {
-  // Arrange
-  let deck = deckConstructor();
-  deck = [
-    '05C', '01D', '09S', '10H',
-  ];
-  let dealer = dealerConstructor();
-  // Override the shuffle to do nothing.
-  dealer.shuffle = (deck) => { };
-
-  // Inject our dependencies
-  let game = lucky21Constructor(deck, dealer);
-
-  // Act
-  game.guess21OrUnder(game);
-
-  // Assert
-  expect(game.state.cards.length).toEqual(3);
-  expect(game.state.cards[2]).toEqual('01D');
-});
-
 //isGameOver
-test('if player guesses he has under 21 but gets over 21 then isGameOver should be true', () => {
+test('isGameOver should be true because player guesses under 21 and gets over 21', () => {
 
   // Arrange
   let deck = deckConstructor();
@@ -72,7 +50,7 @@ test('if player guesses he has under 21 but gets over 21 then isGameOver should 
 })
 
 //isGameOver
-test('if player guesses he has under 21 and has under 21 isGameOver should be false', () => {
+test('isGameOver should be false because player guesses under 21 and has under 21 ', () => {
 
   // Arrange
   let deck = deckConstructor();
@@ -97,7 +75,7 @@ test('if player guesses he has under 21 and has under 21 isGameOver should be fa
 })
 
 //playerWon
-test('if player guesses he has over 21 and gets over 21 then playerWon should be true', () => {
+test('playerWon should be true because player guesses over 21 and gets over 21', () => {
   let deck = deckConstructor();
   deck = [
     '05D', '09S', '10H',
@@ -119,9 +97,8 @@ test('if player guesses he has over 21 and gets over 21 then playerWon should be
 
 })
 
-
 //playerWon
-test('if player guesses under 21 and gets under 21 then playerWon should be false', () => {
+test('playerWon should be false because player guesses under 21 and gets under 21 ', () => {
   let deck = deckConstructor();
   deck = [
     '01D', '04S', '10H',
@@ -144,31 +121,7 @@ test('if player guesses under 21 and gets under 21 then playerWon should be fals
 })
 
 //playerWon
-test('if player guesses under 21 and gets 21 then playerWon should be true', () => {
-  let deck = deckConstructor();
-  deck = [
-    '01D', '10S', '10H',
-  ];
-
-  let dealer = dealerConstructor();
-
-  // Override the shuffle to do nothing.
-  dealer.shuffle = (deck) => { };
-
-  // Inject our dependencies
-  let game = lucky21Constructor(deck, dealer);
-
-  // Act
-  game.guess21OrUnder(game);
-
-  // Assert
-  expect(game.playerWon(game)).toEqual(true);
-
-})
-
-
-//playerWon
-test('if player guesses under 21 and gets 21 then playerWon should be true', () => {
+test('playerWon should be true because player guesses 21 and gets 21 ', () => {
   let deck = deckConstructor();
   deck = [
     '01D', '10S', '10H',
@@ -191,7 +144,7 @@ test('if player guesses under 21 and gets 21 then playerWon should be true', () 
 })
 
 //getCardsValue
-test('the highest score the cards can yield should be equal to 21', () => {
+test('getCardsValue should be equal to 21', () => {
   let deck = deckConstructor();
   deck = [
     '01D', '10S', '10H',
@@ -215,7 +168,7 @@ test('the highest score the cards can yield should be equal to 21', () => {
 
 
 //getCardsValue
-test('the highest score the cards can yield should be equal to 18', () => {
+test('getCardsValue should be equal to 18', () => {
   let deck = deckConstructor();
   deck = [
     '02D', '05S', '01H',
@@ -238,7 +191,7 @@ test('the highest score the cards can yield should be equal to 18', () => {
 })
 
 //getCardsValue
-test('the highest score the cards can yield should be equal to 21', () => {
+test('getCardsValue should be equal to 21', () => {
   let deck = deckConstructor();
   deck = [
     '01D', '13S', '13H',
@@ -261,7 +214,7 @@ test('the highest score the cards can yield should be equal to 21', () => {
 })
 
 //getCardValue
-test('the value of the card that should exceed 21 is 8  ', () => {
+test('getCardValue that exceeds 21 should be 8  ', () => {
   let deck = deckConstructor();
   deck = [
     '08D', '09S', '05H',
@@ -276,16 +229,15 @@ test('the value of the card that should exceed 21 is 8  ', () => {
   let game = lucky21Constructor(deck, dealer);
 
   // Act
-  game.guess21OrUnder(game);
+  game.guessOver21(game);
 
   // Assert
   expect(game.getCardValue(game)).toEqual(8);
 
 })
 
-
 //getCardValue
-test('the value of the card that should exceed 21 is undefined because it is less then 21  ', () => {
+test('getCardValue that exceeds 21 should be undefined because it is less then 21  ', () => {
   let deck = deckConstructor();
   deck = [
     '02D', '09S', '05H',
@@ -307,9 +259,8 @@ test('the value of the card that should exceed 21 is undefined because it is les
 
 })
 
-
 //getTotalValue
-test('sum of drawn cards should equal 25', () => {
+test('getTotalValue should equal 25', () => {
   let deck = deckConstructor();
   deck = [
     '05D', '10S', '10H',
@@ -331,10 +282,8 @@ test('sum of drawn cards should equal 25', () => {
 
 })
 
-
-
 //getTotalValue
-test('sum of drawn cards should equal 18', () => {
+test('getTotalValues should equal 18', () => {
   let deck = deckConstructor();
   deck = [
     '02D', '06S', '10H',
@@ -355,4 +304,96 @@ test('sum of drawn cards should equal 18', () => {
   expect(game.getTotalValue(game)).toEqual(18);
 
 })
+
+//getCards
+test('getCards should equal [02D, 06S, 10H]', () => {
+  let deck = deckConstructor();
+  deck = [
+    '02D', '06S', '10H',
+  ];
+
+  let dealer = dealerConstructor();
+
+  // Override the shuffle to do nothing.
+  dealer.shuffle = (deck) => { };
+
+  // Inject our dependencies
+  let game = lucky21Constructor(deck, dealer);
+
+  // Act
+  game.guess21OrUnder(game);
+
+  // Assert
+  expect(game.getCards(game)).toEqual(['02D', '06S', '10H']);
+
+})
+
+//getCard
+test('getCard should exceed 21 is 08D', () => {
+  let deck = deckConstructor();
+  deck = [
+    '08D', '09S', '05H',
+  ];
+
+  let dealer = dealerConstructor();
+
+  // Override the shuffle to do nothing.
+  dealer.shuffle = (deck) => { };
+
+  // Inject our dependencies
+  let game = lucky21Constructor(deck, dealer);
+
+  // Act
+  game.guessOver21(game);
+
+  // Assert
+  expect(game.getCardValue(game)).toEqual('08D');
+
+})
+
+//getCard
+test('getCard should exceed 21 is undefined because it is less then 21  ', () => {
+  let deck = deckConstructor();
+  deck = [
+    '02D', '09S', '05H',
+  ];
+
+  let dealer = dealerConstructor();
+
+  // Override the shuffle to do nothing.
+  dealer.shuffle = (deck) => { };
+
+  // Inject our dependencies
+  let game = lucky21Constructor(deck, dealer);
+
+  // Act
+  game.guess21OrUnder(game);
+
+  // Assert
+  expect(game.getCardValue(game)).toEqual(undefined);
+
+})
+
+//guess21OrUnder
+test('guess21OrUnder should draw the next card', () => {
+  // Arrange
+  let deck = deckConstructor();
+  deck = [
+    '05C', '01D', '09S', '10H',
+  ];
+  let dealer = dealerConstructor();
+  // Override the shuffle to do nothing.
+  dealer.shuffle = (deck) => { };
+
+  // Inject our dependencies
+  let game = lucky21Constructor(deck, dealer);
+
+  // Act
+  game.guess21OrUnder(game);
+
+  // Assert
+  expect(game.state.cards.length).toEqual(3);
+  expect(game.state.cards[2]).toEqual('01D');
+});
+
 
