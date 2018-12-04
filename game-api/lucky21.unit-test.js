@@ -47,7 +47,7 @@ test('guess21OrUnder should draw the next card', () => {
 });
 
 //isGameOver
-test('if player guesses he has under 21 but gets over 21 then he loses and game is over', () => {
+test('if player guesses he has under 21 but gets over 21 then isGameOver should be true', () => {
 
   // Arrange
   let deck = deckConstructor();
@@ -72,7 +72,7 @@ test('if player guesses he has under 21 but gets over 21 then he loses and game 
 })
 
 //isGameOver
-test('if player guesses he has under 21 and has under 21', () => {
+test('if player guesses he has under 21 and has under 21 isGameOver should be false', () => {
 
   // Arrange
   let deck = deckConstructor();
@@ -97,7 +97,7 @@ test('if player guesses he has under 21 and has under 21', () => {
 })
 
 //playerWon
-test('if player guesses he has over 21 and gets over 21 than he wins and game is over', () => {
+test('if player guesses he has over 21 and gets over 21 then playerWon should be true', () => {
   let deck = deckConstructor();
   deck = [
     '05D', '09S', '10H',
@@ -121,7 +121,7 @@ test('if player guesses he has over 21 and gets over 21 than he wins and game is
 
 
 //playerWon
-test('if player guesses under 21 and gets under 21 than he has not won and the game continues', () => {
+test('if player guesses under 21 and gets under 21 then playerWon should be false', () => {
   let deck = deckConstructor();
   deck = [
     '01D', '04S', '10H',
@@ -144,7 +144,7 @@ test('if player guesses under 21 and gets under 21 than he has not won and the g
 })
 
 //playerWon
-test('if player guesses under 21 and gets 21 than he has won and the game is over', () => {
+test('if player guesses under 21 and gets 21 then playerWon should be true', () => {
   let deck = deckConstructor();
   deck = [
     '01D', '10S', '10H',
