@@ -46,7 +46,8 @@ test('guess21OrUnder should draw the next card', () => {
   expect(game.state.cards[2]).toEqual('01D');
 });
 
-test('if player guesses under 21 but gets over 21 then he loses and game is over', () => {
+//isGameOver
+test('if player guesses he has under 21 but gets over 21 then he loses and game is over', () => {
 
   // Arrange
   let deck = deckConstructor();
@@ -70,7 +71,8 @@ test('if player guesses under 21 but gets over 21 then he loses and game is over
 
 })
 
-test('if player guesses under 21 and has under 21', () => {
+//isGameOver
+test('if player guesses he has under 21 and has under 21', () => {
 
   // Arrange
   let deck = deckConstructor();
@@ -94,7 +96,8 @@ test('if player guesses under 21 and has under 21', () => {
 
 })
 
-test('if player guesses over 21 and gets over 21 than he wins and game is over', () => {
+//playerWon
+test('if player guesses he has over 21 and gets over 21 than he wins and game is over', () => {
   let deck = deckConstructor();
   deck = [
     '05D', '09S', '10H',
@@ -113,9 +116,56 @@ test('if player guesses over 21 and gets over 21 than he wins and game is over',
 
   // Assert
   expect(game.playerWon(game)).toEqual(true);
-  expect(game.isGameOver(game)).toEqual(true);
 
 })
+
+
+//playerWon
+test('if player guesses under 21 and gets under 21 than he has not won and the game continues', () => {
+  let deck = deckConstructor();
+  deck = [
+    '01D', '04S', '10H',
+  ];
+
+  let dealer = dealerConstructor();
+
+  // Override the shuffle to do nothing.
+  dealer.shuffle = (deck) => { };
+
+  // Inject our dependencies
+  let game = lucky21Constructor(deck, dealer);
+
+  // Act
+  game.guess21OrUnder(game);
+
+  // Assert
+  expect(game.playerWon(game)).toEqual(false);
+
+})
+
+//playerWon
+test('if player guesses under 21 and gets 21 than he has won and the game is over', () => {
+  let deck = deckConstructor();
+  deck = [
+    '01D', '10S', '10H',
+  ];
+
+  let dealer = dealerConstructor();
+
+  // Override the shuffle to do nothing.
+  dealer.shuffle = (deck) => { };
+
+  // Inject our dependencies
+  let game = lucky21Constructor(deck, dealer);
+
+  // Act
+  game.guess21OrUnder(game);
+
+  // Assert
+  expect(game.playerWon(game)).toEqual(true);
+
+})
+
 
 
 
