@@ -6,6 +6,7 @@ node {
             sh "git clean -dfxq"
             sh "git stash"
         }
+        //
         dir("game-api") {
             stage("Setup") {
                 sh "yarn install"
