@@ -8,6 +8,11 @@ node {
     
     stage("Clean") {
         sh "git clean -dfxq"
+        sh "git stash"
+    }
+
+    stage("lint") {
+        sh "npm run eslint"
     }
 }
 
