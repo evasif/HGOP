@@ -1,14 +1,21 @@
 node {
     def git = checkout scm
-    stage("Build") {
-        sh "./scripts/docker_build.sh ${git.GIT_COMMIT}"
-        sh "./scripts/docker_push.sh ${git.GIT_COMMIT}"
+
+    def build() {
+        stage("Build") {
+            sh "./scripts/docker_build.sh ${git.GIT_COMMIT}"
+            sh "./scripts/docker_push.sh ${git.GIT_COMMIT}"
+        }
     }
-    stage("Clean") {
-        git clean -dfxq
-        git stash
+    def clean() {
+        stage("Clean") {
+            git clean -dfxq
+            git stash
+        }
     }
-    stage("lint") {
-        npm run eslint
+    def lint() {
+        stage("lint") {
+            npm run eslint
+        }
     }
 }
