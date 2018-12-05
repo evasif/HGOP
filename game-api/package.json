@@ -7,7 +7,8 @@
     "testRegex": "(/__tests__/.*|(\\.|/)(unit-test|spec))\\.jsx?$"
   },
   "scripts": {
-    "test:unit": "jest"
+    "test:unit": "jest",
+    "eslint": "eslint"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +17,8 @@
     "pg": "^7.6.1"
   },
   "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-config-google": "^0.11.0",
     "jest": "^23.6.0"
   }
 }
