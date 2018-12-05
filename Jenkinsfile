@@ -7,6 +7,7 @@ node {
             sh "git stash"
         }
         stage("Setup") {
+            sh "sudo apt install npm"
             sh "cd game-api"
             sh "npm install"
         }
