@@ -21,7 +21,6 @@ module.exports = (deck, dealer) => {
             if (game.playerWon(game) === true) {
                 return true;
             }
-
             //If player guesses 21OrUnder but goes over 21
             else if (game.getCardValue(game) === undefined && game.getTotal(game) > 21) {
                 return true;
@@ -47,7 +46,6 @@ module.exports = (deck, dealer) => {
         playerWon: (game) => {
 
             //If player guesses Over21 and goes over 21
-
             if (game.getCardValue(game) !== undefined && game.getTotal(game) > 21) {
                 return true;
             }
@@ -96,35 +94,11 @@ module.exports = (deck, dealer) => {
                     value -= 10;
                 }
             });
-
-
             return value;
-
-
-            /*if ((number + value) > 21) {
-                cards.forEach(card => {
-                    //Fetching the first two characters of the string, which represent the value of cards
-                    let numberString = card.slice(0, 2);
-                    //Parsing string to int
-                    let number = parseInt(numberString);
-
-                    if (number === 11) {
-                        number = 1;
-                    }
-                });
-            }
-
-            if ((number + value) <= 21) {
-                value += number;
-            }
-
-            return value;*/
         },
         // The value of the card that should exceed 21 if it exists (integer or undefined).
-        // Spilið sem hann heldur að sprengji 
+        // The card the user thinks that will make it explode.
         getCardValue: (game) => {
-
-
             let card = state.card;
             if (card === undefined) {
                 return undefined;
@@ -140,7 +114,6 @@ module.exports = (deck, dealer) => {
                 }
                 return number;
             }
-
         },
         getTotal: (game) => {
             let card = game.getCardValue(game);
@@ -152,7 +125,6 @@ module.exports = (deck, dealer) => {
             else {
                 return value;
             }
-
         },
         // The player's cards (array of strings).
         getCards: (game) => {
@@ -164,36 +136,22 @@ module.exports = (deck, dealer) => {
         },
         // Player action (void).
         guess21OrUnder: (game) => {
-            // Draga
-            // Pusha í cards
-            // Tékka á winner og gameover
+            // Draw card from deck
             let card = state.dealer.draw(state.deck);
+            // Push card to cards
             state.cards.push(card);
 
             let gameover = game.isGameOver(game);
-
             let playerWon = game.playerWon(game);
-
-
-
         },
         // Player action (void).
         guessOver21: (game) => {
-
-            // Draga
-            // Pusha í cards
-            // Tékka á winner og gameover
-            // Bæta við í card
-
             let card = state.dealer.draw(state.deck);
-            //state.cards.push(card);
-
+            // Put card to state
             state.card = card;
 
             let gameover = game.isGameOver(game);
-
             let playerWon = game.playerWon(game);
-
         },
     };
 };
