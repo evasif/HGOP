@@ -12,8 +12,11 @@ node {
     }
 
     stage("lint") {
-        sh "npm install"
-        sh "npm run eslint"
+
+        withNPM(npmrcConfig: 'my-custom-nprc') {
+            sh "npm run eslint"
+        }
+        
     }
 }
 
