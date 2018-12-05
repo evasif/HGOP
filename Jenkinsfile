@@ -7,7 +7,7 @@ node {
     }
     
     stage("Clean") {
-        git status
+        sh "git clean -dfxq"
     }
 }
 
