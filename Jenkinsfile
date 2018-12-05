@@ -7,19 +7,17 @@ node {
             sh "git stash"
         }
         stage("Setup") {
-            sh "sudo apt install npm"
             sh "cd game-api"
             sh "npm install"
         }
         stage("Lint") {
-            sh "npm run eslint" 
+            sh "npm eslint" 
         }
         stage("Test") {
-        
+            sh "npm run test:unit" 
         }
     }
 
-    //
     stage("Deploy") {
         stage("Build") {
             sh "./scripts/docker_build.sh ${git.GIT_COMMIT}"
