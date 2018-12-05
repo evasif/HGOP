@@ -6,7 +6,6 @@
   "rules": {
     "max-len": "off",
     "brace-style": [2, "stroustrup", { "allowSingleLine": true }],
-    "no-unused-vars": "off",
-    "require-jsdoc": "off"
+    "no-unused-vars": "off"
   }
 }
