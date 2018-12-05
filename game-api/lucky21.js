@@ -75,22 +75,50 @@ module.exports = (deck, dealer) => {
 
                 //If the card is Jack, Queen and King we change their value to 10
                 if (number > 10) {
-                    number = 10;
+                    value += 10;
                 }
                 //If the card is an ace we make it worth 11 points unless that would yield a total higher than 21 then it's value is 1
-                if (number == 1) {
-                    number = 11;
-                    if (value + number > 21) {
-                        number = 1;
-                    }
+                else if (number === 1) {
+                    value += 11;
                 }
-
-                if ((number + value) <= 21) {
+                else {
                     value += number;
                 }
             });
 
+            cards.forEach(card => {
+                //Fetching the first two characters of the string, which represent the value of cards
+                let numberString = card.slice(0, 2);
+                //Parsing string to int
+                let number = parseInt(numberString);
+
+                if (number === 1 && value > 21) {
+                    value -= 10;
+                }
+            });
+
+
             return value;
+
+
+            /*if ((number + value) > 21) {
+                cards.forEach(card => {
+                    //Fetching the first two characters of the string, which represent the value of cards
+                    let numberString = card.slice(0, 2);
+                    //Parsing string to int
+                    let number = parseInt(numberString);
+
+                    if (number === 11) {
+                        number = 1;
+                    }
+                });
+            }
+
+            if ((number + value) <= 21) {
+                value += number;
+            }
+
+            return value;*/
         },
         // The value of the card that should exceed 21 if it exists (integer or undefined).
         // Spilið sem hann heldur að sprengji 
@@ -106,38 +134,25 @@ module.exports = (deck, dealer) => {
                 let numberString = card.slice(0, 2);
                 //Parsing string to int
                 let number = parseInt(numberString);
+
+                if (number === 11) {
+                    number = 1;
+                }
                 return number;
             }
 
         },
         getTotal: (game) => {
-            let cards = state.cards;
-            let value = 0;
+            let card = game.getCardValue(game);
+            let value = game.getCardsValue(game);
 
-            // Going through our array of cards
-            cards.forEach(card => {
-                //Fetching the first two characters of the string, which represent the value of cards
-                let numberString = card.slice(0, 2);
-                //Parsing string to int
-                let number = parseInt(numberString);
+            if (card) {
+                return value + card;
+            }
+            else {
+                return value;
+            }
 
-                //If the card is Jack, Queen and King we change their value to 10
-                if (number > 10) {
-                    number = 10;
-                }
-                //If the card is an ace we make it worth 11 points unless that would yield a total higher than 21 then it's value is 1
-                if (number == 1) {
-                    number = 11;
-                    if (value + number > 21) {
-                        number = 1;
-                    }
-                }
-
-                //Adding value of cards together
-                value += number;
-            });
-
-            return value;
         },
         // The player's cards (array of strings).
         getCards: (game) => {
@@ -171,7 +186,7 @@ module.exports = (deck, dealer) => {
             // Bæta við í card
 
             let card = state.dealer.draw(state.deck);
-            state.cards.push(card);
+            //state.cards.push(card);
 
             state.card = card;
 
