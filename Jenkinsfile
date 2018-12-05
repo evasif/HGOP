@@ -12,6 +12,7 @@ node {
     }
 
     stage("lint") {
+        sh "npm install"
         sh "npm run eslint"
     }
 }
