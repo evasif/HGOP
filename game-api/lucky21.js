@@ -23,18 +23,18 @@ module.exports = (deck, dealer) => {
             }
 
             //If player guesses 21OrUnder but goes over 21
-            else if (game.getCardValue(game) === undefined && game.getTotal(game) < 21) {
-                console.log(game.getTotal(game));
+            else if (game.getCardValue(game) === undefined && game.getTotal(game) > 21) {
                 return true;
             }
             //If player guesses Over21 but goes under 21
             else if (game.getCardValue(game) !== undefined && game.getTotal(game) < 21) {
                 return true;
             }
-            //If player guesses Over21 and gets 21??????
+            //If player guesses Over21 and gets 21
             else if (game.getCardValue(game) !== undefined && game.getCardsValue(game) === 21) {
                 return true;
             }
+            // If the player has finished all the cards in the deck
             else if (state.deck.length === 0) {
                 return true;
             }
