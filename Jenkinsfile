@@ -6,16 +6,18 @@ node {
             sh "git clean -dfxq"
             sh "git stash"
         }
-        stage("Setup") {
-            sh "cd game-api"
-            sh "npm install"
+        dir("game-api") {
+            stage("Setup") {
+                sh "yarn install"
+            }
+            stage("Lint") {
+                sh "yarn eslint" 
+            }
+            stage("Test") {
+                sh "yarn test:unit" 
+            }
         }
-        stage("Lint") {
-            sh "npm eslint" 
-        }
-        stage("Test") {
-            sh "npm run test:unit" 
-        }
+        
     }
 
     stage("Deploy") {
