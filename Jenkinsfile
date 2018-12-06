@@ -16,6 +16,7 @@ node {
             stage("Test") {
                 sh "yarn test:unit" 
             }
+            build job: 'name of deployment job', parameters: [[$class: 'StringParameterValue', name: 'GIT_COMMIT', value: "${git.GIT_COMMIT}"]]
         }
     }
     // Deploy stage, should build if everything is OK in commit stage
@@ -25,11 +26,5 @@ node {
             sh "./scripts/docker_push.sh ${git.GIT_COMMIT}"
         }   
     }
-    
-   
-
-   
-
-    
 }
 
