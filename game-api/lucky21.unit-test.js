@@ -37,15 +37,10 @@ test('a new game should have 2 drawn cards', () => {
 // isGameOver
 test('isGameOver should be true because player guesses under 21 and gets over 21', () => {
   // Arrange
-
-  // Override the shuffle to do nothing.
-  // dealer.shuffle = (deck) => {};
   const context = inject({
     deck: () => ['05D', '09S', '10H'],
     dealer: dealerConstructor,
   });
-
-  context.dealer.shuffle = (deck) => {};
 
   // Inject our dependencies
   const game = lucky21Constructor(context);
@@ -60,14 +55,15 @@ test('isGameOver should be true because player guesses under 21 and gets over 21
 // 4
 // isGameOver
 test('isGameOver should be false because player guesses under 21 and has under 21 ', () => {
+  // Override the shuffle to do nothing.
+  const dealer = dealerConstructor();
+  dealer.shuffle = () => {};
+
   // Arrange
   const context = inject({
     deck: () => ['10S', '04D', '05S', '10H'],
-    dealer: dealerConstructor,
+    dealer: () => dealer,
   });
-
-  // Override the shuffle to do nothing.
-  context.dealer.shuffle = (deck) => {};
 
   // Inject our dependencies
   const game = lucky21Constructor(context);
@@ -82,8 +78,10 @@ test('isGameOver should be false because player guesses under 21 and has under 2
 // 5
 // Testing empty deck
 test('isGameOver should be true because all the cards in the deck are finished ', () => {
+  // Override the shuffle to do nothing.
   const dealer = dealerConstructor();
   dealer.shuffle = () => {};
+
   // Arrange
   const context = inject({
     deck: () => ['01D', '09S', '05H'],
@@ -103,16 +101,18 @@ test('isGameOver should be true because all the cards in the deck are finished '
 // 6
 // playerWon
 test('playerWon should be true because player guesses over 21 and gets over 21', () => {
-  // Arrange
-  let deck = deckConstructor();
-  deck = ['05D', '09S', '10H'];
-  const dealer = dealerConstructor();
-
   // Override the shuffle to do nothing.
-  dealer.shuffle = (deck) => {};
+  const dealer = dealerConstructor();
+  dealer.shuffle = () => {};
+
+  // Arrange
+  const context = inject({
+    deck: () => ['05D', '09S', '10H'],
+    dealer: () => dealer,
+  });
 
   // Inject our dependencies
-  const game = lucky21Constructor(deck, dealer);
+  const game = lucky21Constructor(context);
 
   // Act
   game.guessOver21(game);
@@ -124,16 +124,18 @@ test('playerWon should be true because player guesses over 21 and gets over 21',
 // 7
 // playerWon
 test('playerWon should be false because player guesses under 21 and gets under 21 ', () => {
-  // Arrange
-  let deck = deckConstructor();
-  deck = ['01D', '04S', '10H'];
-  const dealer = dealerConstructor();
-
   // Override the shuffle to do nothing.
-  dealer.shuffle = (deck) => {};
+  const dealer = dealerConstructor();
+  dealer.shuffle = () => {};
+
+  // Arrange
+  const context = inject({
+    deck: () => ['05D', '09S', '10H'],
+    dealer: () => dealer,
+  });
 
   // Inject our dependencies
-  const game = lucky21Constructor(deck, dealer);
+  const game = lucky21Constructor(context);
 
   // Act
   game.guess21OrUnder(game);
@@ -145,16 +147,18 @@ test('playerWon should be false because player guesses under 21 and gets under 2
 // 8
 // playerWon
 test('playerWon should be true because player guesses 21 and gets 21 ', () => {
-  // Arrange
-  let deck = deckConstructor();
-  deck = ['01D', '10S', '10H'];
-  const dealer = dealerConstructor();
-
   // Override the shuffle to do nothing.
-  dealer.shuffle = (deck) => {};
+  const dealer = dealerConstructor();
+  dealer.shuffle = () => {};
+
+  // Arrange
+  const context = inject({
+    deck: () => ['01D', '10S', '10H'],
+    dealer: () => dealer,
+  });
 
   // Inject our dependencies
-  const game = lucky21Constructor(deck, dealer);
+  const game = lucky21Constructor(context);
 
   // Act
   game.guess21OrUnder(game);
@@ -166,16 +170,18 @@ test('playerWon should be true because player guesses 21 and gets 21 ', () => {
 // 9
 // getCardsValue
 test('getCardsValue should be equal to 21', () => {
-  // Arrange
-  let deck = deckConstructor();
-  deck = ['01D', '10S', '10H'];
-  const dealer = dealerConstructor();
-
   // Override the shuffle to do nothing.
-  dealer.shuffle = (deck) => {};
+  const dealer = dealerConstructor();
+  dealer.shuffle = () => {};
+
+  // Arrange
+  const context = inject({
+    deck: () => ['01D', '10S', '10H'],
+    dealer: () => dealer,
+  });
 
   // Inject our dependencies
-  const game = lucky21Constructor(deck, dealer);
+  const game = lucky21Constructor(context);
 
   // Act
   game.guess21OrUnder(game);
@@ -187,16 +193,18 @@ test('getCardsValue should be equal to 21', () => {
 // 10
 // getCardsValue
 test('getCardsValue should be equal to 14', () => {
-  // Arrange
-  let deck = deckConstructor();
-  deck = ['05D', '01S', '08H'];
-  const dealer = dealerConstructor();
-
   // Override the shuffle to do nothing.
-  dealer.shuffle = (deck) => {};
+  const dealer = dealerConstructor();
+  dealer.shuffle = () => {};
+
+  // Arrange
+  const context = inject({
+    deck: () => ['05D', '01S', '08H'],
+    dealer: () => dealer,
+  });
 
   // Inject our dependencies
-  const game = lucky21Constructor(deck, dealer);
+  const game = lucky21Constructor(context);
 
   // Act
   game.guess21OrUnder(game);
@@ -208,16 +216,18 @@ test('getCardsValue should be equal to 14', () => {
 // 11
 // getCardsValue
 test('getCardsValue should be equal to 18', () => {
-  // Arrange
-  let deck = deckConstructor();
-  deck = ['02D', '05S', '01H'];
-  const dealer = dealerConstructor();
-
   // Override the shuffle to do nothing.
-  dealer.shuffle = (deck) => {};
+  const dealer = dealerConstructor();
+  dealer.shuffle = () => {};
+
+  // Arrange
+  const context = inject({
+    deck: () => ['02D', '05S', '01H'],
+    dealer: () => dealer,
+  });
 
   // Inject our dependencies
-  const game = lucky21Constructor(deck, dealer);
+  const game = lucky21Constructor(context);
 
   // Act
   game.guess21OrUnder(game);
@@ -229,16 +239,18 @@ test('getCardsValue should be equal to 18', () => {
 // 12
 // getCardsValue
 test('getCardsValue should be equal to 21', () => {
-  // Arrange
-  let deck = deckConstructor();
-  deck = ['01D', '13S', '13H'];
-  const dealer = dealerConstructor();
-
   // Override the shuffle to do nothing.
-  dealer.shuffle = (deck) => {};
+  const dealer = dealerConstructor();
+  dealer.shuffle = () => {};
+
+  // Arrange
+  const context = inject({
+    deck: () => ['01D', '13S', '13H'],
+    dealer: () => dealer,
+  });
 
   // Inject our dependencies
-  const game = lucky21Constructor(deck, dealer);
+  const game = lucky21Constructor(context);
 
   // Act
   game.guess21OrUnder(game);
@@ -250,16 +262,18 @@ test('getCardsValue should be equal to 21', () => {
 // 13
 // getCardValue
 test('getCardValue that exceeds 21 should be 8  ', () => {
-  // Arrange
-  let deck = deckConstructor();
-  deck = ['08D', '09S', '05H'];
-  const dealer = dealerConstructor();
-
   // Override the shuffle to do nothing.
-  dealer.shuffle = (deck) => {};
+  const dealer = dealerConstructor();
+  dealer.shuffle = () => {};
+
+  // Arrange
+  const context = inject({
+    deck: () => ['08D', '09S', '05H'],
+    dealer: () => dealer,
+  });
 
   // Inject our dependencies
-  const game = lucky21Constructor(deck, dealer);
+  const game = lucky21Constructor(context);
 
   // Act
   game.guessOver21(game);
@@ -271,16 +285,18 @@ test('getCardValue that exceeds 21 should be 8  ', () => {
 // 14
 // getCardValue
 test('getCardValue that exceeds 21 should be undefined because it is less then 21  ', () => {
-  // Arrange
-  let deck = deckConstructor();
-  deck = ['02D', '09S', '05H'];
-  const dealer = dealerConstructor();
-
   // Override the shuffle to do nothing.
-  dealer.shuffle = (deck) => {};
+  const dealer = dealerConstructor();
+  dealer.shuffle = () => {};
+
+  // Arrange
+  const context = inject({
+    deck: () => ['02D', '09S', '05H'],
+    dealer: () => dealer,
+  });
 
   // Inject our dependencies
-  const game = lucky21Constructor(deck, dealer);
+  const game = lucky21Constructor(context);
 
   // Act
   game.guess21OrUnder(game);
@@ -292,16 +308,18 @@ test('getCardValue that exceeds 21 should be undefined because it is less then 2
 // 15
 // getTotalValue
 test('getTotalValue should equal 25', () => {
-  // Arrange
-  let deck = deckConstructor();
-  deck = ['05D', '10S', '10H'];
-  const dealer = dealerConstructor();
-
   // Override the shuffle to do nothing.
-  dealer.shuffle = (deck) => {};
+  const dealer = dealerConstructor();
+  dealer.shuffle = () => {};
+
+  // Arrange
+  const context = inject({
+    deck: () => ['05D', '10S', '10H'],
+    dealer: () => dealer,
+  });
 
   // Inject our dependencies
-  const game = lucky21Constructor(deck, dealer);
+  const game = lucky21Constructor(context);
 
   // Act
   game.guessOver21(game);
@@ -313,16 +331,18 @@ test('getTotalValue should equal 25', () => {
 // 16
 // getTotalValue
 test('getTotalValues should equal 18', () => {
-  // Arrange
-  let deck = deckConstructor();
-  deck = ['02D', '06S', '10H'];
-  const dealer = dealerConstructor();
-
   // Override the shuffle to do nothing.
-  dealer.shuffle = (deck) => {};
+  const dealer = dealerConstructor();
+  dealer.shuffle = () => {};
+
+  // Arrange
+  const context = inject({
+    deck: () => ['02D', '06S', '10H'],
+    dealer: () => dealer,
+  });
 
   // Inject our dependencies
-  const game = lucky21Constructor(deck, dealer);
+  const game = lucky21Constructor(context);
 
   // Act
   game.guess21OrUnder(game);
@@ -334,16 +354,18 @@ test('getTotalValues should equal 18', () => {
 // 17
 // getCards
 test('getCards should equal [10H, 06S, 02D]', () => {
-  // Arrange
-  let deck = deckConstructor();
-  deck = ['02D', '06S', '10H'];
-  const dealer = dealerConstructor();
-
   // Override the shuffle to do nothing.
-  dealer.shuffle = (deck) => {};
+  const dealer = dealerConstructor();
+  dealer.shuffle = () => {};
+
+  // Arrange
+  const context = inject({
+    deck: () => ['02D', '06S', '10H'],
+    dealer: () => dealer,
+  });
 
   // Inject our dependencies
-  const game = lucky21Constructor(deck, dealer);
+  const game = lucky21Constructor(context);
 
   // Act
   game.guess21OrUnder(game);
@@ -355,16 +377,18 @@ test('getCards should equal [10H, 06S, 02D]', () => {
 // 18
 // getCard
 test('getCard should exceed 21 is 08D', () => {
-  // Arrange
-  let deck = deckConstructor();
-  deck = ['08D', '09S', '05H'];
-  const dealer = dealerConstructor();
-
   // Override the shuffle to do nothing.
-  dealer.shuffle = (deck) => {};
+  const dealer = dealerConstructor();
+  dealer.shuffle = () => {};
+
+  // Arrange
+  const context = inject({
+    deck: () => ['08D', '09S', '05H'],
+    dealer: () => dealer,
+  });
 
   // Inject our dependencies
-  const game = lucky21Constructor(deck, dealer);
+  const game = lucky21Constructor(context);
 
   // Act
   game.guessOver21(game);
@@ -376,16 +400,18 @@ test('getCard should exceed 21 is 08D', () => {
 // 19
 // getCard
 test('getCard should exceed 21 is undefined because it is less then 21  ', () => {
-  // Arrange
-  let deck = deckConstructor();
-  deck = ['02D', '09S', '05H'];
-  const dealer = dealerConstructor();
-
   // Override the shuffle to do nothing.
-  dealer.shuffle = (deck) => {};
+  const dealer = dealerConstructor();
+  dealer.shuffle = () => {};
+
+  // Arrange
+  const context = inject({
+    deck: () => ['02D', '09S', '05H'],
+    dealer: () => dealer,
+  });
 
   // Inject our dependencies
-  const game = lucky21Constructor(deck, dealer);
+  const game = lucky21Constructor(context);
 
   // Act
   game.guess21OrUnder(game);
@@ -397,16 +423,18 @@ test('getCard should exceed 21 is undefined because it is less then 21  ', () =>
 // 20
 // guess21OrUnder
 test('guess21OrUnder should draw the next card', () => {
-  // Arrange
-  let deck = deckConstructor();
-  deck = ['05C', '01D', '09S', '10H'];
-  const dealer = dealerConstructor();
-
   // Override the shuffle to do nothing.
-  dealer.shuffle = (deck) => {};
+  const dealer = dealerConstructor();
+  dealer.shuffle = () => {};
+
+  // Arrange
+  const context = inject({
+    deck: () => ['05C', '01D', '09S', '10H'],
+    dealer: () => dealer,
+  });
 
   // Inject our dependencies
-  const game = lucky21Constructor(deck, dealer);
+  const game = lucky21Constructor(context);
 
   // Act
   game.guess21OrUnder(game);
@@ -419,16 +447,18 @@ test('guess21OrUnder should draw the next card', () => {
 // 21
 // guess21OrUnder
 test('guess21OrUnder should draw the next card', () => {
-  // Arrange
-  let deck = deckConstructor();
-  deck = ['05C', '02D', '09S', '10H'];
-  const dealer = dealerConstructor();
-
   // Override the shuffle to do nothing.
-  dealer.shuffle = (deck) => {};
+  const dealer = dealerConstructor();
+  dealer.shuffle = () => {};
+
+  // Arrange
+  const context = inject({
+    deck: () => ['05C', '02D', '09S', '10H'],
+    dealer: () => dealer,
+  });
 
   // Inject our dependencies
-  const game = lucky21Constructor(deck, dealer);
+  const game = lucky21Constructor(context);
 
   // Act
   game.guess21OrUnder(game);
