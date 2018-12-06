@@ -6,11 +6,13 @@ const inject = require('./inject.js');
 // 1
 test('a new game should have 50 cards left in the deck', () => {
   // Arrange
-  const deck = deckConstructor();
-  const dealer = dealerConstructor();
+  const context = inject({
+    deck: deckConstructor,
+    dealer: dealerConstructor,
+  });
 
   // Inject our dependencies
-  const game = lucky21Constructor(deck, dealer);
+  const game = lucky21Constructor(context);
 
   // Assert
   expect(game.state.deck.length).toEqual(50);
@@ -19,11 +21,13 @@ test('a new game should have 50 cards left in the deck', () => {
 // 2
 test('a new game should have 2 drawn cards', () => {
   // Arrange
-  const deck = deckConstructor();
-  const dealer = dealerConstructor();
+  const context = inject({
+    deck: deckConstructor,
+    dealer: dealerConstructor,
+  });
 
   // Inject our dependencies
-  const game = lucky21Constructor(deck, dealer);
+  const game = lucky21Constructor(context);
 
   // Assert
   expect(game.state.cards.length).toEqual(2);
@@ -33,15 +37,12 @@ test('a new game should have 2 drawn cards', () => {
 // isGameOver
 test('isGameOver should be true because player guesses under 21 and gets over 21', () => {
   // Arrange
-  let deck = deckConstructor();
-  deck = ['05D', '09S', '10H'];
-  const dealer = dealerConstructor();
 
   // Override the shuffle to do nothing.
-  dealer.shuffle = (deck) => {};
+  // dealer.shuffle = (deck) => {};
 
   const context = inject({
-    deck: deck,
+    deck: () => ['05D', '09S', '10H'],
     dealer: dealer,
   });
 
