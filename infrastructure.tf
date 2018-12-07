@@ -9,7 +9,7 @@ provider "aws" {
 # In ingress we specify our rules, i.e. the instance should run on the open port 22. 
 # It should run on localhost 3000.
 resource "aws_security_group" "game_security_group" {
-  name   = "GameSecurityGroup"
+  name = "GameSecurityGroup"
 
   ingress {
     from_port   = 22
@@ -40,9 +40,11 @@ resource "aws_instance" "game_server" {
   instance_type          = "t2.micro"
   key_name               = "GameKeyPair"
   vpc_security_group_ids = ["${aws_security_group.game_security_group.id}"]
+
   tags {
     Name = "GameServer"
   }
+
   # Here we are copying our script from the machine executing Terraform to the newly created resource. 
   # We are connecting to a resource with ssh using our GameKeyPair. 
   provisioner "file" {
@@ -55,6 +57,7 @@ resource "aws_instance" "game_server" {
       private_key = "${file("~/.aws/GameKeyPair.pem")}"
     }
   }
+
   # Here we are copying our docker compose file from the machine executing Terraform to the newly created resource.
   # We are connecting to a resource with ssh using our GameKeyPair. 
   provisioner "file" {
@@ -68,9 +71,9 @@ resource "aws_instance" "game_server" {
     }
   }
 
-   provisioner "file" {
+  provisioner "file" {
     source      = "scripts/docker_compose_up.sh"
-    destination = "/home/ubuntu/docker_compose_up.yml"
+    destination = "/home/ubuntu/docker_compose_up.sh"
 
     connection {
       type        = "ssh"
@@ -78,6 +81,7 @@ resource "aws_instance" "game_server" {
       private_key = "${file("~/.aws/GameKeyPair.pem")}"
     }
   }
+
   # This is used to run commands on the instance we just created.
   # Terraform does this by SSHing into the instance and then executing the commands.
   # Since it can take time for the SSH agent on machine to start up we let Terraform
