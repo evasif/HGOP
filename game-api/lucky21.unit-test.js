@@ -3,7 +3,7 @@ const dealerConstructor = require('./dealer.js');
 const lucky21Constructor = require('./lucky21.js');
 const inject = require('./inject.js');
 //
-// e
+// Still
 test('a new game should have 50 cards left in the deck', () => {
   // Arrange
   const context = inject({
