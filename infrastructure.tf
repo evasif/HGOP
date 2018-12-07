@@ -92,18 +92,6 @@ resource "aws_instance" "game_server" {
   provisioner "remote-exec" {
     inline = [
       "chmod +x /home/ubuntu/initialize_game_api_instance.sh",
-    ]
-
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      private_key = "${file("~/.aws/GameKeyPair.pem")}"
-    }
-  }
-}
-
-  provisioner "remote-exec" {
-    inline = [
       "chmod +x /home/ubuntu/docker_compose_up.sh",
     ]
 
