@@ -19,11 +19,11 @@ This project was created for the class **Hagnýt Gæðastjórnun og prófanir** 
 - **username:** hgop
 - **password:** abc123
 
-### 3. Authors
+## 3. Authors
 
 Eva Sif Einarsdóttir and Ísabella Ýr Finnsdóttir
 
-### 4. Teachers
+## 4. Teachers
 
 Guðlaugur Stefán Egilsson and Hannes Pétursson
 
