@@ -6,14 +6,19 @@ This project was created for the class **Hagnýt Gæðastjórnun og prófanir** 
 
 Project for week 2
 
+### 3 Jenkins URL
+
+- **URL**: http://ec2-52-90-206-44.compute-1.amazonaws.com:8080/
+
 ### 2 Jenkins user:
 
 **username:** hgop
 **password:** abc123
 
-### 3 Jenkins URL
+### 4 ip the game API is running on
 
-- **URL**: http://ec2-52-90-206-44.compute-1.amazonaws.com:8080/
+18.212.107.32:3000
+**_Á EFTIR AÐ UPPFÆRA RÉTT IP_**
 
 ### 3. Authors
 
