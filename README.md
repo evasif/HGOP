@@ -17,8 +17,7 @@ Project for week 2
 
 ### 4 ip the game API is running on
 
-18.212.107.32:3000
-**_Á EFTIR AÐ UPPFÆRA RÉTT IP_**
+http://35.171.25.181:3000/status
 
 ### 3. Authors
 
