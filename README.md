@@ -1,10 +1,8 @@
-# Week 1 - Assignment :cherry_blossom:
+# Week 2 - Assignment :cherry_blossom:
 
 ## 1. About project
 
 This project was created for the class **Hagnýt Gæðastjórnun og prófanir** (SC-T-542-HGOP).
-
-Project for week 2
 
 ### 3 Jenkins URL
 
