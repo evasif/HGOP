@@ -2,6 +2,7 @@ const deckConstructor = require('./deck.js');
 const dealerConstructor = require('./dealer.js');
 const lucky21Constructor = require('./lucky21.js');
 const inject = require('./inject.js');
+const randomConstructor = require('./random.js');
 //
 // Still trying
 test('a new game should have 50 cards left in the deck', () => {
@@ -9,6 +10,7 @@ test('a new game should have 50 cards left in the deck', () => {
   const context = inject({
     deck: deckConstructor,
     dealer: dealerConstructor,
+    random: randomConstructor(),
   });
 
   // Inject our dependencies
@@ -24,6 +26,7 @@ test('a new game should have 2 drawn cards', () => {
   const context = inject({
     deck: deckConstructor,
     dealer: dealerConstructor,
+    random: randomConstructor(),
   });
 
   // Inject our dependencies
@@ -40,6 +43,7 @@ test('isGameOver should be true because player guesses under 21 and gets over 21
   const context = inject({
     deck: () => ['05D', '09S', '10H'],
     dealer: dealerConstructor,
+    random: randomConstructor(),
   });
 
   // Inject our dependencies
