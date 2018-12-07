@@ -1,5 +1,5 @@
 #!/bin/bash
 
 export GIT_COMMIT=$1
-docker-compose down
-docker-compose up
+docker-compose down --detached
+docker-compose up --detached
