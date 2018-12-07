@@ -1,5 +1,4 @@
 module.exports = (context) => {
-  console.log(context);
   const deckConstructor = context('deck');
   const deck = deckConstructor(context);
 
