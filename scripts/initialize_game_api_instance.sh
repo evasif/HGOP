@@ -29,5 +29,4 @@ if [ ! -e "$file" ]; then
     exit 1
 fi
 
-echo 'Starting the API'
-sudo docker-compose up -d
+

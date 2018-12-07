@@ -4,24 +4,24 @@ services:
     # Change image to commit to git, tag is git commit now
     image: isabellaf16/hgop:${GIT_COMMIT}
     ports:
-      - process.env.PORT || 3000
+      - 3000:3000
     depends_on:
       - my_postgres_container
     environment:
-      #POSTGRES_DB: "my_postgres_database"
-      #POSTGRES_USER: "my_postgres_user"
-      #POSTGRES_PASSWORD: "my_postgres_password"
-      pgHost: process.env.POSTGRES_HOST || 'default_host'
-      pgUser: process.env.POSTGRES_USER || 'default_user'
-      pgPassword: process.env.POSTGRES_PASSWORD || 'default_password'
-      pgDatabase: process.env.POSTGRES_DB || 'default_database'
+      POSTGRES_DB: "my_postgres_database"
+      POSTGRES_USER: "my_postgres_user"
+      POSTGRES_PASSWORD: "my_postgres_password"
+      #pgHost: process.env.POSTGRES_HOST || 'default_host'
+      #pgUser: process.env.POSTGRES_USER || 'default_user'
+      #pgPassword: process.env.POSTGRES_PASSWORD || 'default_password'
+      #3pgDatabase: process.env.POSTGRES_DB || 'default_database'
   my_postgres_container:
     image: postgres
     environment:
-      #POSTGRES_DB: "my_postgres_database"
-      #POSTGRES_USER: "my_postgres_user"
-      #POSTGRES_PASSWORD: "my_postgres_password"
-      pgHost: process.env.POSTGRES_HOST || 'default_host'
-      pgUser: process.env.POSTGRES_USER || 'default_user'
-      pgPassword: process.env.POSTGRES_PASSWORD || 'default_password'
-      pgDatabase: process.env.POSTGRES_DB || 'default_database'
+      POSTGRES_DB: "my_postgres_database"
+      POSTGRES_USER: "my_postgres_user"
+      POSTGRES_PASSWORD: "my_postgres_password"
+      #pgHost: process.env.POSTGRES_HOST || 'default_host'
+      #pgUser: process.env.POSTGRES_USER || 'default_user'
+      #pgPassword: process.env.POSTGRES_PASSWORD || 'default_password'
+      #pgDatabase: process.env.POSTGRES_DB || 'default_database'
