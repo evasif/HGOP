@@ -102,6 +102,19 @@ resource "aws_instance" "game_server" {
   }
 }
 
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /home/ubuntu/docker_compose_up.sh",
+    ]
+
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      private_key = "${file("~/.aws/GameKeyPair.pem")}"
+    }
+  }
+}
+
 # Here we are defining an output to show us the public IP address. 
 output "public_ip" {
   value = "${aws_instance.game_server.public_ip}"
