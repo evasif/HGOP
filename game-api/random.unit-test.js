@@ -1,6 +1,6 @@
 const randomConstructor = require('./random.js');
 
-test('randomInt function returns a number less or equal than max and greater or equal than min', () => {
+test('randomInt function returns a number less than max and greater or equal than min', () => {
   const {randomInt} = randomConstructor();
   const min = 1;
   const max = 10;
