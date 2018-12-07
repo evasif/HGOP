@@ -15,7 +15,7 @@ COPY database.js database.js
 COPY app.js app.js
 
 # Execute npm install
-RUN npm install
+RUN npm install --production
 
 # Providing defaults for an executing container
 CMD node app.js
