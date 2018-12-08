@@ -8,7 +8,7 @@ This project was created for the class **Hagnýt Gæðastjórnun og prófanir** 
 
 ### 2.1 Game API is running on
 
-- **IP address**: See in the output in the project DeploymentAWS on Jenkins where the Game API is running. It runs on port 3000. IP:3000/status should display The API is running!
+- **IP address**: See the IP address in the output in the project DeploymentAWS on Jenkins. The Game API is running on that IP address on port 3000. **IP:3000/status** should display: The API is running!
 
 ### 2.2 Jenkins URL
 
