@@ -4,9 +4,9 @@ variable "environment" {
 }
 
 # Usages
-name = "GameSecurityGroup_${var.environment}"
+#name = "GameSecurityGroup_${var.environment}"
 
-Name = "GameServer_${var.environment}"
+#Name = "GameServer_${var.environment}"
 
 # A configuration for the aws provider we have created. 
 # We specify where the provider can find the credentials run commands on AWS.
@@ -18,8 +18,10 @@ provider "aws" {
 # We provide a security group resource. 
 # In ingress we specify our rules, i.e. the instance should run on the open port 22. 
 # It should run on localhost 3000.
+# resource "aws_security_group" "game_security_group" {
+# name = "GameSecurityGroup"
 resource "aws_security_group" "game_security_group" {
-  name = "GameSecurityGroup"
+  name = "GameSecurityGroup_${var.environment}"
 
   ingress {
     from_port   = 22
@@ -52,7 +54,7 @@ resource "aws_instance" "game_server" {
   vpc_security_group_ids = ["${aws_security_group.game_security_group.id}"]
 
   tags {
-    Name = "GameServer"
+    Name = "GameServer_${var.environment}"
   }
 
   # Here we are copying our script from the machine executing Terraform to the newly created resource. 
