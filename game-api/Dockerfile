@@ -7,7 +7,7 @@ WORKDIR /code
 
 # Copy package.json file into the environment
 COPY package.json package.json
-COPY package-lock.json package-lock.json
+#COPY package-lock.json package-lock.json
 
 # Execute npm install
 RUN npm install --production
