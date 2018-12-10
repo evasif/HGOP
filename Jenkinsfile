@@ -14,7 +14,7 @@ node {
                 sh "yarn eslint" 
             }
             stage("Test") {
-                sh "yarn unit:test" 
+                sh "yarn test:unit" 
                 step([
                     $class: 'CloverPublisher',
                     cloverReportDir: 'coverage',
