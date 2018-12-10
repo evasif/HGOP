@@ -4,11 +4,12 @@
   "description": "",
   "main": "app.js",
   "jest": {
-    "testRegex": "(/__tests__/.*|(\\.|/)(unit-test|spec))\\.jsx?$"
+    "testRegex": "(/__tests__/.*|(\\.|/)(unit-test|api-test))\\.jsx?$"
   },
   "scripts": {
     "unit:test": "jest --coverage",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:api": "jest"
   },
   "author": "",
   "license": "ISC",
