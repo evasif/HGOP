@@ -13,26 +13,28 @@ module.exports = function(context) {
   }
 
   const client = getClient();
-  client.connect((err) => {
-    if (err) {
-      console.log('failed to connect to postgres!');
-    }
-    else {
-      console.log('successfully connected to postgres!');
-      client.query(
-          'CREATE TABLE IF NOT EXISTS GameResult (ID SERIAL PRIMARY KEY, Won BOOL NOT NULL, Score INT NOT NULL, Total INT NOT NULL, InsertDate TIMESTAMP NOT NULL);',
-          (err) => {
-            if (err) {
-              console.log('error creating game result table!');
+  setTimeout(() => {
+    client.connect((err) => {
+      if (err) {
+        console.log('failed to connect to postgres!');
+      }
+      else {
+        console.log('successfully connected to postgres!');
+        client.query(
+            'CREATE TABLE IF NOT EXISTS GameResult (ID SERIAL PRIMARY KEY, Won BOOL NOT NULL, Score INT NOT NULL, Total INT NOT NULL, InsertDate TIMESTAMP NOT NULL);',
+            (err) => {
+              if (err) {
+                console.log('error creating game result table!');
+              }
+              else {
+                console.log('successfully created game result table!');
+              }
+              client.end();
             }
-            else {
-              console.log('successfully created game result table!');
-            }
-            client.end();
-          }
-      );
-    }
-  });
+        );
+      }
+    });
+  }, 5000);
 
   return {
     insertResult: (won, score, total, onSuccess, onError) => {
@@ -63,18 +65,81 @@ module.exports = function(context) {
     },
     // Should call onSuccess with integer.
     getTotalNumberOfGames: (onSuccess, onError) => {
-      onSuccess(0);
-      // TODO week 3
+      const client = getClient();
+      client.connect((err) => {
+        if (err) {
+          onError(err);
+          client.end();
+        }
+        else {
+          const query = {
+            text: 'SELECT COUNT(*) FROM GameResult',
+            values: [won, score, total],
+          };
+          client.query(query, (err, res) => {
+            if (err) {
+              onError();
+            }
+            else {
+              // Hvað á að senda inn?
+              onSuccess(res.rows[0].count);
+            }
+            client.end();
+          });
+        }
+      });
     },
     // Should call onSuccess with integer.
     getTotalNumberOfWins: (onSuccess, onError) => {
-      onSuccess(0);
-      // TODO week 3
+      const client = getClient();
+      client.connect((err) => {
+        if (err) {
+          onError(err);
+          client.end();
+        }
+        else {
+          const query = {
+            text: 'SELECT COUNT(*) FROM GameResult WHERE won=true',
+            values: [won, score, total],
+          };
+          client.query(query, (err, res) => {
+            if (err) {
+              onError();
+            }
+            else {
+              // Hvað á að senda inn?
+              onSuccess(res.rows[0].count);
+            }
+            client.end();
+          });
+        }
+      });
     },
     // Should call onSuccess with integer.
     getTotalNumberOf21: (onSuccess, onError) => {
-      onSuccess(0);
-      // TODO week 3
+      const client = getClient();
+      client.connect((err) => {
+        if (err) {
+          onError(err);
+          client.end();
+        }
+        else {
+          const query = {
+            text: 'SELECT COUNT(*) FROM GameResult WHERE score=21',
+            values: [won, score, total],
+          };
+          client.query(query, (err, res) => {
+            if (err) {
+              onError();
+            }
+            else {
+              // Hvað á að senda inn?
+              onSuccess(res.rows[0].count);
+            }
+            client.end();
+          });
+        }
+      });
     },
   };
 };

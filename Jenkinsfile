@@ -14,7 +14,15 @@ node {
                 sh "yarn eslint" 
             }
             stage("Test") {
-                sh "yarn test:unit" 
+                sh "yarn unit:test" 
+                step([
+                    $class: 'CloverPublisher',
+                    cloverReportDir: 'coverage',
+                    cloverReportFileName: 'clover.xml',
+                    healthyTarget: [methodCoverage: 80, conditionalCoverage: 80, statementCoverage: 80],
+                    unhealthyTarget: [methodCoverage: 50, conditionalCoverage: 50, statementCoverage: 50],
+                    failingTarget: [methodCoverage: 0, conditionalCoverage: 0, statementCoverage: 0]
+                ])
             } 
         } 
         stage("Build") {
