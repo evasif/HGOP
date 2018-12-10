@@ -1,170 +1,79 @@
 module.exports = (context) => {
   const deckConstructor = context('deck');
   const deck = deckConstructor(context);
-
   const dealerConstructor = context('dealer');
   const dealer = dealerConstructor(context);
 
   dealer.shuffle(deck);
   const card0 = dealer.draw(deck);
   const card1 = dealer.draw(deck);
-  const state = {
-    deck: deck,
-    dealer: dealer,
-    cards: [card0, card1],
-    // The card that the player thinks will exceed 21.
-    card: undefined,
-  };
+
   return {
-    state: state,
-    // Is the game over (true or false).
+    state: {
+      deck: deck,
+      dealer: dealer,
+      cards: [card0, card1],
+      card: undefined,
+    },
     isGameOver: (game) => {
-      // If player wins
-      if (game.playerWon(game) === true) {
-        return true;
-      }
-      else if (
-        // If player guesses 21OrUnder but goes over 21
-        game.getCardValue(game) === undefined &&
-        game.getTotal(game) > 21
-      ) {
-        return true;
-      }
-      // If player guesses Over21 but goes under 21
-      else if (
-        game.getCardValue(game) !== undefined &&
-        game.getTotal(game) < 21
-      ) {
-        return true;
-      }
-      // If player guesses Over21 and gets 21
-      else if (
-        game.getCardValue(game) !== undefined &&
-        game.getCardsValue(game) === 21
-      ) {
-        return true;
-      }
-      // If the player has finished all the cards in the deck
-      else if (state.deck.length === 0) {
-        return true;
-      }
-      // Else the game is not finished
-      else {
-        return false;
-      }
+      return game.state.card !== undefined || game.getTotal(game) >= 21;
     },
-    // Has the player won (true or false).
     playerWon: (game) => {
-      // If player guesses Over21 and goes over 21
-      if (game.getCardValue(game) !== undefined && game.getTotal(game) > 21) {
-        return true;
-      }
-      // If player guesses 21OrUnder and gets 21
-      else if (
-        game.getCardValue(game) === undefined &&
-        game.getTotal(game) === 21
-      ) {
-        return true;
-      }
-      // Else he has not won
-      else {
-        return false;
-      }
+      return (
+        (game.state.card !== undefined && game.getTotal(game) > 21) ||
+        game.getCardsValue(game) == 21
+      );
     },
-    // The highest score the cards can yield without going over 21 (integer).
-    // síðasta value áður en það sprakk
     getCardsValue: (game) => {
-      const cards = state.cards;
-      let value = 0;
+      let cardsValue = 0;
 
-      // Going through our array of cards
-      cards.forEach((card) => {
-        // Fetching the first two characters of the string, which represent the value of cards
-        const numberString = card.slice(0, 2);
-        // Parsing string to int
-        const number = parseInt(numberString);
+      // count everything and treat all aces as 1.
+      for (let i = 0; i < game.state.cards.length; i++) {
+        const cardValue = parseInt(game.state.cards[i].substring(0, 2));
+        cardsValue += Math.min(cardValue, 10);
+      }
 
-        // If the card is Jack, Queen and King we change their value to 10
-        if (number > 10) {
-          value += 10;
+      // foreach ace check if we can add 10.
+      for (let i = 0; i < game.state.cards.length; i++) {
+        const cardValue = parseInt(game.state.cards[i].substring(0, 2));
+        if (cardValue == 1) {
+          if (cardsValue + 10 <= 21) {
+            cardsValue += 10;
+          }
         }
-        // If the card is an ace we make it worth 11 points unless that would yield a total higher than 21 then it's value is 1
-        else if (number === 1) {
-          value += 11;
-        }
-        else {
-          value += number;
-        }
-      });
+      }
 
-      cards.forEach((card) => {
-        // Fetching the first two characters of the string, which represent the value of cards
-        const numberString = card.slice(0, 2);
-        // Parsing string to int
-        const number = parseInt(numberString);
-
-        if (number === 1 && value > 21) {
-          value -= 10;
-        }
-      });
-      return value;
+      return cardsValue;
     },
-    // The value of the card that should exceed 21 if it exists (integer or undefined).
-    // The card the user thinks that will make it explode.
     getCardValue: (game) => {
-      const card = state.card;
-      if (card === undefined) {
-        return undefined;
-      }
-      else {
-        // Fetching the first two characters of the string, which represent the value of cards
-        const numberString = card.slice(0, 2);
-        // Parsing string to int
-        let number = parseInt(numberString);
+      const card = game.state.card;
+      if (card === undefined) return card;
 
-        if (number === 11) {
-          number = 1;
-        }
-        return number;
-      }
+      const cardValue = parseInt(card.substring(0, 2));
+      return Math.min(cardValue, 10);
     },
     getTotal: (game) => {
-      const card = game.getCardValue(game);
-      const value = game.getCardsValue(game);
-
-      if (card) {
-        return value + card;
-      }
-      else {
-        return value;
-      }
+      return game.getCardsValue(game) + (game.getCardValue(game) || 0);
     },
-    // The player's cards (array of strings).
-    getCards: (game) => {
-      return state.cards;
-    },
-    // The player's card (string or undefined).
-    getCard: (game) => {
-      return state.card;
-    },
-    // Player action (void).
+    getCards: (game) => game.state.cards,
+    getCard: (game) => game.state.card,
     guess21OrUnder: (game) => {
-      // Draw card from deck
-      const card = state.dealer.draw(state.deck);
-      // Push card to cards
-      state.cards.push(card);
-
-      const gameover = game.isGameOver(game);
-      const playerWon = game.playerWon(game);
+      const nextCard = dealer.draw(game.state.deck);
+      game.state.cards.push(nextCard);
     },
-    // Player action (void).
     guessOver21: (game) => {
-      const card = state.dealer.draw(state.deck);
-      // Put card to state
-      state.card = card;
-
-      const gameover = game.isGameOver(game);
-      const playerWon = game.playerWon(game);
+      const nextCard = dealer.draw(game.state.deck);
+      game.state.card = nextCard;
+    },
+    getState: (game) => {
+      return {
+        cards: game.state.cards,
+        cardsValue: game.getCardsValue(game),
+        card: game.state.card,
+        cardValue: game.getCardValue(game),
+        total: game.getTotal(game),
+        gameOver: game.isGameOver(game),
+      };
     },
   };
 };

@@ -3,13 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "jest": {
-    "testRegex": "(/__tests__/.*|(\\.|/)(unit-test|api-test))\\.jsx?$"
-  },
   "scripts": {
-    "unit:test": "jest --coverage",
     "lint": "eslint",
-    "test:api": "jest"
+    "test:unit": "jest --testRegex .*\\.unit-test\\. --collectCoverage true",
+    "test:api": "jest --testRegex .*\\.api-test\\. --collectCoverage true",
+    "test:capacity": "jest --testRegex .*\\.capacity-test\\. --collectCoverage true"
   },
   "author": "",
   "license": "ISC",
