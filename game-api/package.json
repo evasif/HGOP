@@ -7,7 +7,7 @@
     "testRegex": "(/__tests__/.*|(\\.|/)(unit-test|spec))\\.jsx?$"
   },
   "scripts": {
-    "test:unit": "jest",
+    "unit:test": "jest --coverage",
     "lint": "eslint"
   },
   "author": "",
