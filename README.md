@@ -1,30 +1,29 @@
-# Week 1 - Assignment :cherry_blossom:
+# Week 2 - Assignment :cherry_blossom:
 
 ## 1. About project
 
 This project was created for the class **Hagnýt Gæðastjórnun og prófanir** (SC-T-542-HGOP).
 
-Project for week 2
+## 2. How to run project:
 
-### 3 Jenkins URL
+### 2.1 Game API is running on
 
-- **URL**: http://ec2-52-90-206-44.compute-1.amazonaws.com:8080/
+- **IP address**: See the IP address in the output in the project DeploymentAWS on Jenkins. The Game API is running on that IP address on port 3000. **IP:3000/status** should display: The API is running!
 
-### 2 Jenkins user:
+### 2.2 Jenkins URL
 
-**username:** hgop
-**password:** abc123
+- **URL:** http://ec2-52-90-206-44.compute-1.amazonaws.com:8080/
 
-### 4 ip the game API is running on
+### 2.3 Jenkins user:
 
-18.212.107.32:3000
-**_Á EFTIR AÐ UPPFÆRA RÉTT IP_**
+- **username:** hgop
+- **password:** abc123
 
-### 3. Authors
+## 3. Authors
 
 Eva Sif Einarsdóttir and Ísabella Ýr Finnsdóttir
 
-### 4. Teachers
+## 4. Teachers
 
 Guðlaugur Stefán Egilsson and Hannes Pétursson
 
