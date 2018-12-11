@@ -15,8 +15,8 @@ module.exports = function(context) {
 
   let game = undefined;
 
-  // Starts a new game.
-  app.post('/stats', (req, res) => {
+  // Gets stats.
+  app.get('/stats', (req, res) => {
     database.getTotalNumberOfGames(
         (totalNumberOfGames) => {
           database.getTotalNumberOfWins(
@@ -74,6 +74,24 @@ module.exports = function(context) {
     }
     else {
       game = lucky21Constructor(context);
+      if (game.playerWon(game)) {
+        const won = game.playerWon(game);
+        const score = game.getCardsValue(game);
+        const total = game.getTotal(game);
+        database.insertResult(
+            won,
+            score,
+            total,
+            () => {
+              console.log('Game result inserted to database');
+            },
+            (err) => {
+              console.log(
+                  'Failed to insert game result, Error:' + JSON.stringify(err)
+              );
+            }
+        );
+      }
       const msg = 'Game started';
       res.statusCode = 201;
       res.send(msg);
