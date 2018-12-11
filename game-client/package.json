@@ -4,8 +4,8 @@
   "description": "Minimalistic front-end",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "build": "parcel build ./src/index.html --public-url ./",
+    "start": "cp -R cards dist && node index.js",
+    "build": "cp -R cards dist && parcel build ./src/index.html --public-url ./",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -1,7 +1,7 @@
 version: "3"
 services:
   my_game_api:
-    image: isabellaf16/hgop:${GIT_COMMIT}
+    image: isabellaf16/hgop-api:${GIT_COMMIT}
     ports:
       - "3000:3000"
     depends_on:
@@ -19,4 +19,10 @@ services:
       POSTGRES_USER: "my_user"
       POSTGRES_PASSWORD: "my_password"
   my_client_container:
-    image: isabellaf16/hgop:part1
+    image: isabellaf16/hgop-client:${GIT_COMMIT}
+    ports:
+      - "4000:4000"
+    depends_on:
+      - my_game_api
+    environment:
+      PORT: 4000
