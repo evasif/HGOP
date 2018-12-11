@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1544453233156" clover="3.2.0">
-  <project timestamp="1544453233156" name="All files">
+<coverage generated="1544470202717" clover="3.2.0">
+  <project timestamp="1544470202717" name="All files">
     <metrics statements="29" coveredstatements="13" conditionals="10" coveredconditionals="3" methods="5" coveredmethods="4" elements="44" coveredelements="20" complexity="0" loc="29" ncloc="29" packages="1" files="1" classes="1">
       <file name="server.lib-test.js" path="/Users/isabellayr/Desktop/Haust18/HGOP/game-api/server.lib-test.js">
         <metrics statements="29" coveredstatements="13" conditionals="10" coveredconditionals="3" methods="5" coveredmethods="4"/>
