@@ -34,6 +34,5 @@ COPY random.js random.js
 COPY server.js server.js
 
 # Providing defaults for an executing container
-CMD node app.js
-
+CMD sleep 5 && npm run migratedb:pg && node app.js
 
