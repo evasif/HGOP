@@ -3,11 +3,6 @@ variable "environment" {
   type = "string"
 }
 
-# Usages
-#name = "GameSecurityGroup_${var.environment}"
-
-#Name = "GameServer_${var.environment}"
-
 # A configuration for the aws provider we have created. 
 # We specify where the provider can find the credentials run commands on AWS.
 provider "aws" {
