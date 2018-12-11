@@ -33,6 +33,10 @@ COPY random.js random.js
 # Copy server.js file into the environment
 COPY server.js server.js
 
+COPY migrations migrations
+
+COPY database.json database.json
+
 # Providing defaults for an executing container
 CMD sleep 5 && npm run migratedb:pg && node app.js
 
