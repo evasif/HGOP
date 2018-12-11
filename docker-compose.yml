@@ -18,3 +18,5 @@ services:
       POSTGRES_DB: "game_database"
       POSTGRES_USER: "my_user"
       POSTGRES_PASSWORD: "my_password"
+  my_client_container:
+    image: isabellaf16/hgop:part1
