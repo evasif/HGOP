@@ -2,4 +2,4 @@
 
 We use the onSuccess callback function because the functions getTotalNumberOfGames, getTotalNumberOfWins and getTotalNumberOf21 are asynchronous. They only way to know that results have successfully been retrieved from their call is when they call onSuccess callback function.
 
-### what does the done parameter do in server.api-test.js?
+### What does the done parameter do in server.api-test.js?
