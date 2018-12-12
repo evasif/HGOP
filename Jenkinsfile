@@ -26,7 +26,7 @@ node {
             } 
         } 
         stage("Build") {
-            sh "./scripts/docker_build.sh ${git.GIT_COMMIT}"
+            sh "./scripts/docker_build.sh ${git.GIT_COMMIT} ${"STAGE!"}" 
             sh "./scripts/docker_push.sh ${git.GIT_COMMIT}"
         }
         build job: 'APITest', parameters: [[$class: 'StringParameterValue', name: 'GIT_COMMIT', value: "${git.GIT_COMMIT}"]]

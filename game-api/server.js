@@ -71,7 +71,7 @@ module.exports = function(context) {
 
   // Starts a new game.
   app.post('/start', (req, res) => {
-    client.increment('games.started', 'dev');
+    client.increment('games.started', process.env.ENVIRONMENT);
     if (game && game.isGameOver(game) == false) {
       res.statusCode = 409;
       res.send('There is already a game in progress');

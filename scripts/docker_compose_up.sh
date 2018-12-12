@@ -1,6 +1,7 @@
 #!/bin/bash
 
 export GIT_COMMIT=$1
+export ENVIRONMENT=$2
 
 #docker-compose down isabellaf16/hgop-api:$GIT_COMMIT 
 #docker-compose up isabellaf16/hgop-api:$GIT_COMMIT 
