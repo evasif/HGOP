@@ -6,10 +6,10 @@ module.exports = function(context) {
   const config = configConstructor(context);
   const lucky21Constructor = context('lucky21');
   const cors = require('cors');
-
   const app = express();
   app.use(cors());
-
+  const Datadog = require('hot-shots');
+  const client = new Datadog((host = 'my_datadog_container'));
 
   app.get('/status', (req, res) => {
     res.statusCode = 200;
@@ -71,6 +71,7 @@ module.exports = function(context) {
 
   // Starts a new game.
   app.post('/start', (req, res) => {
+    client.increment('games.started');
     if (game && game.isGameOver(game) == false) {
       res.statusCode = 409;
       res.send('There is already a game in progress');
