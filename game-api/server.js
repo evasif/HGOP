@@ -9,7 +9,7 @@ module.exports = function(context) {
   const app = express();
   app.use(cors());
   const Datadog = require('hot-shots');
-  const client = new Datadog((host = 'my_datadog_container'));
+  const client = new Datadog({host: 'my_datadog_container'});
 
   app.get('/status', (req, res) => {
     res.statusCode = 200;
