@@ -5,8 +5,11 @@ module.exports = function(context) {
   const configConstructor = context('config');
   const config = configConstructor(context);
   const lucky21Constructor = context('lucky21');
+  const cors = require('cors');
 
   const app = express();
+  app.use(cors());
+
 
   app.get('/status', (req, res) => {
     res.statusCode = 200;
