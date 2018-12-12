@@ -26,3 +26,13 @@ services:
       - my_game_api
     environment:
       PORT: 4000
+  # Based on https://github.com/DataDog/docker-compose-example
+  my_datadog_container:
+    image: datadog/agent:latest
+    environment:
+      - DD_API_KEY=a724b389c9c4f658bdf284272d2e306d
+      - DD_DOGSTATSD_NON_LOCAL_TRAFFIC=true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /proc/:/host/proc/:ro
+      - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
