@@ -71,6 +71,7 @@ module.exports = function(context) {
 
   // Starts a new game.
   app.post('/start', (req, res) => {
+    console.log(process.env.ENVIRONMENT);
     client.increment('games.started', process.env.ENVIRONMENT);
     if (game && game.isGameOver(game) == false) {
       res.statusCode = 409;

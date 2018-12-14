@@ -1,6 +1,6 @@
 import axios from "axios";
 // TODO: Add correct api Url
-const apiUrl = "http://localhost:3000";
+const apiUrl = `http://${process.env.API_HOST}:3000`;
 
 export const startGame = () => {
   // TODO: Call start game
