@@ -26,6 +26,8 @@ This project was created for the class **Hagnýt Gæðastjórnun og prófanir** 
 
 ### 3.1 Screenshot of our DataDog Dashboard
 
+![DatadogDashboard](./DatadogDashboard.png)
+
 ## 4. Authors
 
 Eva Sif Einarsdóttir and Ísabella Ýr Finnsdóttir
