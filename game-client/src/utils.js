@@ -1,28 +1,21 @@
 import axios from "axios";
-// TODO: Add correct api Url
 const apiUrl = `http://${process.env.API_IP}:${process.env.API_PORT}`;
-console.log(apiUrl);
 
 export const startGame = () => {
-  console.log(apiUrl);
   return axios.post(`${apiUrl}/start`).then(res => {
     return getState();
   });
 };
 
 export const getState = () => {
-  console.log(apiUrl);
-  // TODO: Get the state of the game
   return axios.get(`${apiUrl}/state`);
 };
 
 export const guessOver21 = () => {
-  // TODO: Guess over 21
   return axios.post(`${apiUrl}/guessOver21`);
 };
 
 export const guess21OrUnder = () => {
-  // TODO: Guess 21 or under
   return axios.post(`${apiUrl}/guess21OrUnder`);
 };
 
