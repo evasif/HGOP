@@ -71,7 +71,6 @@ module.exports = function(context) {
 
   // Starts a new game.
   app.post('/start', (req, res) => {
-    console.log(process.env.ENVIRONMENT);
     client.increment('games.started', process.env.ENVIRONMENT);
     if (game && game.isGameOver(game) == false) {
       res.statusCode = 409;
@@ -83,6 +82,12 @@ module.exports = function(context) {
         const won = game.playerWon(game);
         const score = game.getCardsValue(game);
         const total = game.getTotal(game);
+        if (won) {
+          client.increment('games.won', process.env.ENVIRONMENT);
+        }
+        else {
+          client.increment('games.lost', process.env.ENVIRONMENT);
+        }
         database.insertResult(
             won,
             score,
@@ -130,6 +135,12 @@ module.exports = function(context) {
           const won = game.playerWon(game);
           const score = game.getCardsValue(game);
           const total = game.getTotal(game);
+          if (won) {
+            client.increment('games.won', process.env.ENVIRONMENT);
+          }
+          else {
+            client.increment('games.lost', process.env.ENVIRONMENT);
+          }
           database.insertResult(
               won,
               score,
@@ -169,6 +180,12 @@ module.exports = function(context) {
           const won = game.playerWon(game);
           const score = game.getCardsValue(game);
           const total = game.getTotal(game);
+          if (won) {
+            client.increment('games.won', process.env.ENVIRONMENT);
+          }
+          else {
+            client.increment('games.lost', process.env.ENVIRONMENT);
+          }
           database.insertResult(
               won,
               score,
