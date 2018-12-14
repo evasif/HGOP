@@ -8,8 +8,8 @@ This project was created for the class **Hagnýt Gæðastjórnun og prófanir** 
 
 ### 2.1 Game API is running on
 
-- **IP address**: See the IP address in the output in the project DeploymentAWS on Jenkins. The Game API is running on that IP address on port 3000. **http://IP:3000/status** should display: The API is running!
-  On **http://IP:4000** you should be able to play lucky21.
+- IP address: **http://IP:3000/status**. See the IP address in the output in the project DeploymentAWS on Jenkins. The Game API is running on that IP address on port 3000. You should see: **The API is running!**
+- To play game: **http://IP:4000**. Use the same IP address that you receive from Jenkins.
 
 ### 2.2 Jenkins URL
 
@@ -20,15 +20,15 @@ This project was created for the class **Hagnýt Gæðastjórnun og prófanir** 
 - **username:** hgop
 - **password:** abc123
 
-## 3. DataDog:
+### 2.4. DataDog :dog:
 
 - We invited Hrafn Orri to our team in DataDog.
 
-### 3.1 Screenshot of our DataDog Dashboard
+#### 2.4.1 Screenshot of our DataDog Dashboard
 
 ![DatadogDashboard](./DatadogDashboard.png)
 
-## 4. Authors
+## 4. Authors :dancers:
 
 Eva Sif Einarsdóttir and Ísabella Ýr Finnsdóttir
 
