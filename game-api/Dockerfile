@@ -32,9 +32,9 @@ COPY lucky21.js lucky21.js
 COPY random.js random.js
 # Copy server.js file into the environment
 COPY server.js server.js
-
+# Copy migrations into the environment
 COPY migrations migrations
-
+# Copy database into the environment
 COPY database.json database.json
 
 # Providing defaults for an executing container

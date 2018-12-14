@@ -1,4 +1,3 @@
-# Top of file
 variable "environment" {
   type = "string"
 }
