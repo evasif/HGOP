@@ -3,7 +3,7 @@ import axios from "axios";
 const apiUrl = `http://${process.env.API_HOST}:3000`;
 
 export const startGame = () => {
-  // TODO: Call start game
+  console.log(process.env.API_HOST);
   return axios.post(`${apiUrl}/start`).then(res => {
     return getState();
   });
