@@ -1,15 +1,17 @@
 import axios from "axios";
 // TODO: Add correct api Url
 const apiUrl = `http://${process.env.API_IP}:${process.env.API_PORT}`;
+console.log(apiUrl);
 
 export const startGame = () => {
-  console.log(process.env.API_HOST);
+  console.log(apiUrl);
   return axios.post(`${apiUrl}/start`).then(res => {
     return getState();
   });
 };
 
 export const getState = () => {
+  console.log(apiUrl);
   // TODO: Get the state of the game
   return axios.get(`${apiUrl}/state`);
 };
