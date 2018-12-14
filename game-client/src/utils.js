@@ -1,6 +1,6 @@
 import axios from "axios";
 // TODO: Add correct api Url
-const apiUrl = `http://${process.env.API_HOST}:3000`;
+const apiUrl = `http://${process.env.API_IP}:${process.env.API_PORT}`;
 
 export const startGame = () => {
   console.log(process.env.API_HOST);
